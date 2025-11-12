@@ -1,0 +1,127 @@
+http:
+  routers:
+    # Auth Service
+    auth-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/auth`)"
+      service: auth-service
+      middlewares:
+        - rate-limit-auth
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Price Service
+    price-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/prices`)"
+      service: price-service
+      middlewares:
+        - rate-limit-standard
+        - circuit-breaker
+        - cache
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Journal Service
+    journal-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/journal`)"
+      service: journal-service
+      middlewares:
+        - auth-required
+        - rate-limit-standard
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Tools Service
+    tools-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/tools`)"
+      service: tools-service
+      middlewares:
+        - rate-limit-standard
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Community Service
+    community-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/community`)"
+      service: community-service
+      middlewares:
+        - rate-limit-standard
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Notification Service
+    notification-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/notifications`)"
+      service: notification-service
+      middlewares:
+        - auth-required
+        - rate-limit-standard
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Search Service
+    search-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/search`)"
+      service: search-service
+      middlewares:
+        - rate-limit-search
+        - circuit-breaker
+        - cache
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Media Service
+    media-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/media`)"
+      service: media-service
+      middlewares:
+        - auth-required
+        - rate-limit-upload
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # Gamification Service
+    gamification-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/gamification`)"
+      service: gamification-service
+      middlewares:
+        - rate-limit-standard
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt
+    
+    # AI Service
+    ai-service:
+      rule: "Host(`api.seedfinderpro.de`) && PathPrefix(`/api/ai`)"
+      service: ai-service
+      middlewares:
+        - auth-required
+        - rate-limit-ai
+        - circuit-breaker
+      entryPoints:
+        - websecure
+      tls:
+        certResolver: letsencrypt

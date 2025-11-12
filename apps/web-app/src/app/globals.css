@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Architects+Daughter&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142 76% 36%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142 76% 36%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    font-family: 'Architects Daughter', 'Patrick Hand', cursive;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Caveat', 'Architects Daughter', cursive;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  /* Cannabis Gradient Backgrounds */
+  .cannabis-gradient {
+    background: linear-gradient(135deg, 
+      #1a4d2e 0%,
+      #2d6a4f 25%,
+      #40916c 50%,
+      #52b788 75%,
+      #74c69d 100%
+    );
+  }
+
+  .cannabis-gradient-dark {
+    background: linear-gradient(135deg,
+      #0a3d29 0%,
+      #145a3c 25%,
+      #1e7552 50%,
+      #2d9068 75%,
+      #3fab7d 100%
+    );
+  }
+
+  /* 3D Neumorphism */
+  .neo-deep {
+    background: linear-gradient(145deg, #0f3d2b, #0a2a1f);
+    box-shadow: 
+      15px 15px 30px rgba(5, 21, 16, 0.8),
+      -15px -15px 30px rgba(31, 77, 57, 0.3),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.03),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(64, 145, 108, 0.15);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .neo-deep:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+      20px 20px 40px rgba(5, 21, 16, 0.9),
+      -20px -20px 40px rgba(31, 77, 57, 0.4),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.05),
+      inset -4px -4px 8px rgba(0, 0, 0, 0.5),
+      0 0 80px rgba(64, 145, 108, 0.4);
+  }
+
+  /* Bubble Button */
+  .bubble-soft {
+    background: linear-gradient(145deg, 
+      #2d6a4f 0%,
+      #40916c 50%,
+      #52b788 100%
+    );
+    box-shadow: 
+      8px 8px 16px rgba(5, 21, 16, 0.6),
+      -4px -4px 12px rgba(82, 183, 136, 0.2),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .bubble-soft:hover {
+    transform: translateY(-4px);
+    box-shadow: 
+      12px 12px 24px rgba(5, 21, 16, 0.7),
+      -6px -6px 16px rgba(82, 183, 136, 0.3),
+      inset -4px -4px 8px rgba(0, 0, 0, 0.5),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.3),
+      0 0 60px rgba(64, 145, 108, 0.5);
+  }
+
+  /* Message Bubble */
+  .msg-bubble {
+    background: linear-gradient(135deg, 
+      #1a4d2e 0%,
+      #2d6a4f 50%,
+      #40916c 100%
+    );
+    box-shadow: 
+      10px 10px 20px rgba(5, 21, 16, 0.6),
+      -5px -5px 15px rgba(64, 145, 108, 0.2),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(82, 183, 136, 0.2);
+  }
+
+  /* Avatar */
+  .avatar-cannabis {
+    background: linear-gradient(135deg,
+      #2d6a4f 0%,
+      #40916c 25%,
+      #52b788 50%,
+      #74c69d 75%,
+      #95d5b2 100%
+    );
+    box-shadow: 
+      8px 8px 16px rgba(5, 21, 16, 0.6),
+      -4px -4px 12px rgba(116, 198, 157, 0.3),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(64, 145, 108, 0.5);
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-green {
+    0%, 100% {
+      box-shadow: 
+        8px 8px 16px rgba(5, 21, 16, 0.6),
+        -4px -4px 12px rgba(116, 198, 157, 0.3),
+        inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+        0 0 40px rgba(64, 145, 108, 0.5);
+    }
+    50% {
+      box-shadow: 
+        8px 8px 16px rgba(5, 21, 16, 0.6),
+        -4px -4px 12px rgba(116, 198, 157, 0.3),
+        inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+        0 0 70px rgba(64, 145, 108, 0.7);
+    }
+  }
+
+  /* Strain Card */
+  .strain-card-3d {
+    background: linear-gradient(145deg, #0f3d2b, #0a2a1f);
+    box-shadow: 
+      12px 12px 24px rgba(5, 21, 16, 0.7),
+      -6px -6px 18px rgba(31, 77, 57, 0.3),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.4),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .strain-card-3d::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, 
+      rgba(64, 145, 108, 0.4),
+      rgba(116, 198, 157, 0.2)
+    );
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .strain-card-3d:hover {
+    transform: translateY(-8px) rotateX(5deg);
+    box-shadow: 
+      18px 18px 36px rgba(5, 21, 16, 0.8),
+      -10px -10px 24px rgba(31, 77, 57, 0.4),
+      inset -4px -4px 8px rgba(0, 0, 0, 0.5),
+      inset 4px 4px 8px rgba(255, 255, 255, 0.08),
+      0 0 80px rgba(64, 145, 108, 0.4);
+  }
+
+  /* Icon Embossed */
+  .icon-emboss {
+    background: linear-gradient(145deg, #40916c, #52b788);
+    box-shadow: 
+      8px 8px 16px rgba(5, 21, 16, 0.7),
+      -4px -4px 12px rgba(116, 198, 157, 0.3),
+      inset -3px -3px 6px rgba(0, 0, 0, 0.5),
+      inset 3px 3px 6px rgba(255, 255, 255, 0.4);
+  }
+
+  /* Input Inset */
+  .input-inset {
+    background: linear-gradient(145deg, #0a2a1f, #0f3d2b);
+    box-shadow: 
+      inset 8px 8px 16px rgba(5, 21, 16, 0.8),
+      inset -4px -4px 12px rgba(31, 77, 57, 0.3),
+      3px 3px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(64, 145, 108, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .input-inset:focus {
+    box-shadow: 
+      inset 10px 10px 20px rgba(5, 21, 16, 0.9),
+      inset -6px -6px 16px rgba(31, 77, 57, 0.4),
+      0 0 0 4px rgba(64, 145, 108, 0.3),
+      0 0 30px rgba(64, 145, 108, 0.3);
+    border-color: rgba(64, 145, 108, 0.6);
+  }
+
+  /* Tab Button */
+  .tab-btn-3d {
+    background: linear-gradient(145deg, #0f3d2b, #0a2a1f);
+    box-shadow: 
+      8px 8px 16px rgba(5, 21, 16, 0.6),
+      -4px -4px 12px rgba(31, 77, 57, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .tab-btn-3d.active {
+    background: linear-gradient(145deg, #40916c, #52b788);
+    box-shadow: 
+      inset 6px 6px 12px rgba(26, 77, 46, 0.8),
+      inset -3px -3px 8px rgba(116, 198, 157, 0.4),
+      0 0 40px rgba(64, 145, 108, 0.5);
+  }
+
+  /* Badge */
+  .badge-3d {
+    background: linear-gradient(145deg, #2d6a4f, #40916c);
+    box-shadow: 
+      4px 4px 8px rgba(5, 21, 16, 0.6),
+      -2px -2px 6px rgba(82, 183, 136, 0.3),
+      inset -2px -2px 4px rgba(0, 0, 0, 0.4),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Upload Zone */
+  .upload-zone {
+    background: linear-gradient(145deg, #0a2a1f, #0f3d2b);
+    box-shadow: 
+      inset 10px 10px 20px rgba(5, 21, 16, 0.7),
+      inset -5px -5px 15px rgba(31, 77, 57, 0.3);
+    border: 3px dashed rgba(64, 145, 108, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .upload-zone:hover {
+    border-color: rgba(64, 145, 108, 0.7);
+    box-shadow: 
+      inset 12px 12px 24px rgba(5, 21, 16, 0.8),
+      inset -6px -6px 18px rgba(31, 77, 57, 0.4),
+      0 0 40px rgba(64, 145, 108, 0.3);
+  }
+
+  /* Gradient Text */
+  .text-cannabis {
+    background: linear-gradient(135deg, 
+      #40916c 0%,
+      #52b788 25%,
+      #74c69d 50%,
+      #95d5b2 75%,
+      #b7e4c7 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  }
+
+  /* Custom Scrollbar */
+  .custom-scroll::-webkit-scrollbar {
+    width: 14px;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-track {
+    background: linear-gradient(145deg, #0a2a1f, #0f3d2b);
+    box-shadow: inset 4px 4px 8px rgba(5, 21, 16, 0.7);
+    border-radius: 12px;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(145deg, #40916c, #52b788);
+    box-shadow: 
+      3px 3px 6px rgba(5, 21, 16, 0.5),
+      inset -2px -2px 4px rgba(0, 0, 0, 0.4),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+  }
+
+  /* Animation */
+  .animate-in {
+    animation: slideIn 0.5s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

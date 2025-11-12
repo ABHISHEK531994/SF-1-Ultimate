@@ -1,0 +1,91 @@
+http:
+  services:
+    auth-service:
+      loadBalancer:
+        servers:
+          - url: "http://auth-service:3001"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    price-service:
+      loadBalancer:
+        servers:
+          - url: "http://price-service:3002"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    journal-service:
+      loadBalancer:
+        servers:
+          - url: "http://journal-service:3003"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    tools-service:
+      loadBalancer:
+        servers:
+          - url: "http://tools-service:3004"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    community-service:
+      loadBalancer:
+        servers:
+          - url: "http://community-service:3005"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    notification-service:
+      loadBalancer:
+        servers:
+          - url: "http://notification-service:3006"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    search-service:
+      loadBalancer:
+        servers:
+          - url: "http://search-service:3007"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    media-service:
+      loadBalancer:
+        servers:
+          - url: "http://media-service:3008"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    gamification-service:
+      loadBalancer:
+        servers:
+          - url: "http://gamification-service:3009"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"
+    
+    ai-service:
+      loadBalancer:
+        servers:
+          - url: "http://ai-service:3010"
+        healthCheck:
+          path: "/health"
+          interval: "10s"
+          timeout: "3s"

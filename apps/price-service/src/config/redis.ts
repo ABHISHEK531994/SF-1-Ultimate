@@ -1,0 +1,45 @@
+// Price Service - Redis Configuration
+import { createClient } from 'redis';
+import { logger } from '../utils/logger';
+
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
+
+export const redis = createClient({
+  url: REDIS_URL,
+  socket: {
+    reconnectStrategy: (retries) => {
+      if (retries > 10) {
+        logger.error('[Redis] Too many reconnect attempts');
+        return new Error('Redis reconnect failed');
+      }
+      return Math.min(retries * 100, 3000);
+    }
+  }
+});
+
+redis.on('error', (err) => {
+  logger.error('[Redis] Error:', err);
+});
+
+redis.on('connect', () => {
+  logger.info('[Redis] Connected');
+});
+
+redis.on('reconnecting', () => {
+  logger.warn('[Redis] Reconnecting...');
+});
+
+export async function connectRedis(): Promise<void> {
+  try {
+    await redis.connect();
+    logger.info('[Redis] Connection established');
+  } catch (error) {
+    logger.error('[Redis] Connection failed:', error);
+    process.exit(1);
+  }
+}
+
+export async function disconnectRedis(): Promise<void> {
+  await redis.quit();
+  logger.info('[Redis] Disconnected');
+}

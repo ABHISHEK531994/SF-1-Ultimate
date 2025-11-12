@@ -1,0 +1,97 @@
+http:
+  middlewares:
+    # Auth Required
+    auth-required:
+      forwardAuth:
+        address: "http://auth-service:3001/api/auth/verify"
+        authResponseHeaders:
+          - "X-User-Id"
+          - "X-User-Role"
+          - "X-User-Premium"
+    
+    # Rate Limiting (Redis-backed)
+    rate-limit-auth:
+      rateLimit:
+        average: 10
+        period: 1m
+        burst: 5
+    
+    rate-limit-standard:
+      rateLimit:
+        average: 100
+        period: 1m
+        burst: 50
+    
+    rate-limit-search:
+      rateLimit:
+        average: 50
+        period: 1m
+        burst: 20
+    
+    rate-limit-upload:
+      rateLimit:
+        average: 20
+        period: 1m
+        burst: 10
+    
+    rate-limit-ai:
+      rateLimit:
+        average: 5
+        period: 1m
+        burst: 2
+    
+    # Circuit Breaker
+    circuit-breaker:
+      circuitBreaker:
+        expression: "NetworkErrorRatio() > 0.5 || ResponseCodeRatio(500, 600, 0, 600) > 0.3"
+        checkPeriod: 10s
+        fallbackDuration: 30s
+        recoveryDuration: 30s
+    
+    # Cache (for GET requests)
+    cache:
+      plugin:
+        traefik-plugin-cache:
+          ttl: 300
+          methods:
+            - GET
+    
+    # Security Headers
+    security-headers:
+      headers:
+        browserXssFilter: true
+        contentTypeNosniff: true
+        frameDeny: true
+        sslRedirect: true
+        stsSeconds: 31536000
+        stsIncludeSubdomains: true
+        stsPreload: true
+        customResponseHeaders:
+          X-Content-Type-Options: "nosniff"
+          X-Frame-Options: "DENY"
+          X-XSS-Protection: "1; mode=block"
+    
+    # CORS
+    cors:
+      headers:
+        accessControlAllowMethods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - OPTIONS
+        accessControlAllowOriginList:
+          - "https://seedfinderpro.de"
+          - "https://www.seedfinderpro.de"
+        accessControlAllowHeaders:
+          - "*"
+        accessControlExposeHeaders:
+          - "*"
+        accessControlAllowCredentials: true
+        accessControlMaxAge: 7200
+        addVaryHeader: true
+    
+    # Compression
+    compress:
+      compress: {}

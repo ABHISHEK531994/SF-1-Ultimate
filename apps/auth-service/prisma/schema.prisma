@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  PREMIUM
+  MODERATOR
+  ADMIN
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+  DISCORD
+}
+
+model User {
+  id            String        @id @default(cuid())
+  email         String        @unique
+  username      String?       @unique
+  passwordHash  String?
+  
+  role          UserRole      @default(USER)
+  provider      AuthProvider  @default(LOCAL)
+  providerId    String?
+  
+  // Premium
+  premiumUntil  DateTime?
+  
+  // Profile
+  avatar        String?
+  bio           String?
+  
+  // Status
+  isVerified    Boolean       @default(false)
+  isActive      Boolean       @default(true)
+  isBanned      Boolean       @default(false)
+  
+  // Relations
+  sessions      Session[]
+  refreshTokens RefreshToken[]
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  @@index([email])
+  @@index([username])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  ipAddress String?
+  userAgent String?
+  expiresAt DateTime
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  family    String   // Token rotation family
+  expiresAt DateTime
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([token])
+  @@index([family])
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+  
+  @@index([email])
+  @@index([token])
+}
